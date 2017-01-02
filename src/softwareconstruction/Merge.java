@@ -27,3 +27,14 @@ public class Merge
 
 
 
+private InputStream openUrlStreamAndMergeIt(InputStream inptStream,String urlString) throws  Exception
+    {
+       
+          InputStream  inptStream2=new URL(urlString).openStream();
+
+         if(inptStream==null)
+            inptStream=inptStream2;
+         else
+            inptStream=Merge.mergeTwoInputStream(inptStream,inptStream2);
+
+        return inptStream;
