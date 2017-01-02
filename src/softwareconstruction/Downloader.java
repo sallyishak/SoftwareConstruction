@@ -27,7 +27,7 @@ public class Downloader
 
             for (int i = 0; i < list.size(); i++)
             {
-                String[] linkList = list.get(i).split(";");
+                String[] linkList = list.get(i).split();
                 inptStream=manageDownload(inptStream, linkList);
             }
         }
