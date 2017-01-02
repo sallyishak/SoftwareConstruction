@@ -7,7 +7,7 @@ package softwareconstruction;
 
 /**
  *
- * @author sallyishak
+ * @author Remal Saad
  */
 
 import java.io.BufferedReader;
@@ -41,10 +41,48 @@ public class Parser
 
          List<String> listOfParts=new ArrayList<String>();
          String str = "";
+         String blockPart = "";
          BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
 
+  try
+    {
+      String line = br.readLine();
+      while (line != null)
+       {
+        line=line.replaceAll("\\s+","");// remove space
 
+        if(line.equals("**"))
+        {
+        listOfParts.add(blockPart);
+        blockPart = "" ;
+        }
+        else
+        {
+        if(!validateURL(line))
+        throw new Exception("*** In valid manifset formate.");
 
+        blockPart+=line+";";
+        }
+        line = br.readLine();
+       }
+        listOfParts.add(blockPart);
+    }
+    catch (Exception e)
+    {
+       
+
+        throw e;
+
+    }
+    finally
+    {
+        br.close();
+    }
+
+      
+
+		
+	
 		return listOfParts ;
 	}
 

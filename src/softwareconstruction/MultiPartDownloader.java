@@ -189,6 +189,7 @@ public static boolean testInet(String site) {
 			while(read!=-1) {
 				dest.write(buf, 0, read); 
 				read = inptStream.read(buf);
+                                preview(dest.toByteArray());
 			}
 			
 		} catch(IOException e) {
@@ -196,12 +197,23 @@ public static boolean testInet(String site) {
 			
 		} 
 	}
-	
+	private void preview(byte[] data) {
+		
+		if(fileType.equalsIgnoreCase("jpg")||fileType.equalsIgnoreCase("gif")
+				||fileType.equalsIgnoreCase("png")) {
+			imgView.setIcon(new ImageIcon(data));
+			scrollPane.setViewportView(imgView);
+		}
+		else if(fileType.equalsIgnoreCase("txt")) {
+			textView.setText(new String(data));
+			scrollPane.setViewportView(textView);
+		}
+		else {
+			textView.setText("[unknown file type]");
+			scrollPane.setViewportView(textView);
+		}
 	
 
-	
-
-
-}
+        }}
 
     

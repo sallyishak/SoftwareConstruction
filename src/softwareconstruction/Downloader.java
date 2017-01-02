@@ -4,8 +4,10 @@ import java.util.List;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-
-
+/**
+ *
+ * @author Zeina Doughlas
+ */
 public class Downloader
 {
   
