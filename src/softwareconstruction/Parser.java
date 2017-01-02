@@ -88,7 +88,26 @@ public class Parser
 
     private boolean validateURL(String url)
     {
-       
+       URL u = null;
+        try
+        {
+            u = new URL(url);
+        } catch (MalformedURLException e)
+        {
+            System.err.println("Error in multipart.Parsing.validateURL:"+e);
+            return false;
+        }
+        try
+        {
+            u.toURI();
+        }
+        catch (URISyntaxException e)
+        {
+            System.err.println("Error in multipart.Parsing.validateURL"+e);
+            return false;
+        }
+
+  
 
         return true;
     }
