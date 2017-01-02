@@ -4,10 +4,14 @@ import java.util.List;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+
 /**
  *
  * @author Zeina Doughlas
  */
+
+// downloader Classs 
+
 public class Downloader
 {
   
@@ -43,7 +47,7 @@ public class Downloader
 
         return inptStream;
     }
-
+// have to check the exception 
    
     public InputStream manageDownload(InputStream inputStream1,String[] linkList) throws Exception
     {
@@ -54,7 +58,7 @@ public class Downloader
         return null;
 
     }
-
+// have to check the exception 
     private InputStream openUrlStreamAndMergeIt(InputStream inptStream,String urlString) throws  Exception
     {
         return null;
