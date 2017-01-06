@@ -81,3 +81,37 @@ private InputStream openUrlStreamAndMergeIt(InputStream inptStream,String urlStr
             inptStream=Merge.mergeTwoInputStream(inptStream,inptStream2);
 
         return inptStream;
+--------------------------------
+public class Downloader
+{
+
+    public Downloader() {
+    }
+
+    public PicIn DownloaderUrl(String url) throws Exception
+    {
+        
+
+        PicIn inputPic=null;
+
+        if(url!=null && !url.equals(""))
+            url = url.trim();
+        else
+            throw new IOException(" *** Empty.");
+ if (!Multipart.validateURL(url))
+            throw new IOException(" *** Invalid.");
+
+         if (!Multipart.isUrlExist(url))
+            throw new IOException(" ***Not Exist.");
+            
+            if(url.endsWith(Main.MANIFEST_SUFFIX)) 
+        {
+
+            Parsing parsingManifest=new Parsing();
+            List<String> bockList = parsingManifest.readManifset(new URL(url));
+
+            for (int i = 0; i < bockList.size(); i++)
+            {
+                String[] linkList = bockList.get(i).split(";");
+                inputPic=manageDownloader(inputPic, linkList);
+            }
