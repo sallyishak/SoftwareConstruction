@@ -34,7 +34,7 @@ public class FileSequenceReader {
 
             byte[] data = new byte[size];
             int nRead = sequence.read(data, 0, data.length);
-            buffer.write(data, 0, nRead);
+            buffer.write(data,1, nRead);
         }
 
 
