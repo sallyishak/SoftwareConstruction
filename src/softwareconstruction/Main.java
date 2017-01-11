@@ -30,7 +30,7 @@ import multipart.Multipart;
 
 /**
  * A program for downloading and previewing multi-part files
- * and file sequence streams.
+ * and file sequence streams From the DR .
  */
 public class Main extends JFrame {
 
