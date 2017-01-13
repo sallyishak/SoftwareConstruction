@@ -107,11 +107,4 @@ public class Downloader
             if(url.endsWith(Main.MANIFEST_SUFFIX)) 
         {
 
-            Parsing parsingManifest=new Parsing();
-            List<String> bockList = parsingManifest.readManifset(new URL(url));
-
-            for (int i = 0; i < bockList.size(); i++)
-            {
-                String[] linkList = bockList.get(i).split(";");
-                inputPic=manageDownloader(inputPic, linkList);
-            }
+   
