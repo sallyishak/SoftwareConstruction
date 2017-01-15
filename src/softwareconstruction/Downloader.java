@@ -23,6 +23,17 @@ public class Downloader
        
 
         InputStream inptStream=null;
+         if(url!=null && !url.equals(""))
+            url = url.trim();
+        else
+            throw new IOException("Empty URL.");
+
+
+        if (!MultiPartData.validateURL(url))
+            throw new IOException("Invalid URL.");
+
+         if (!MultiPartData.UrlFound(url))
+            throw new IOException("Manifset Not Exist.");
 
        
         if(url.endsWith(MultiPartDownloader.MANIFEST_SUFFIX)) 
@@ -56,6 +67,33 @@ public class Downloader
         InputStream inputStream2=null;
         boolean downloadSucccess=false;
         return null;
+      
+       for(String urlString:linkList)
+        {
+            if(MultiPartData.validateURL(urlString)&&MultiPartData.UrlFound(urlString))
+            {
+                try
+                {
+                    if(urlString.endsWith(MultiPartDownloader.MANIFEST_SUFFIX))
+                        inptStream2=downloadUrl(urlString);
+                    else
+                        inptStream2=new URL(urlString).openStream();
+
+                    if(inptStream==null)
+                        inptStream=inptStream2;
+                    else
+                        inptStream=Merge.mergeTwoInputStream(inptStream,inptStream2);
+
+                    downloadSucccess=true;
+                    break; // **** we need only one link form bock
+                }
+                catch (Exception e)
+                {
+                   
+                }
+            }
+        }
+
 
     }
 // have to check the exception 
