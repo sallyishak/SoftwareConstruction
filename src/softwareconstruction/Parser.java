@@ -58,14 +58,7 @@ public class Parser
         }
         else
         {
-        if(!validateURL(line))
-        throw new Exception("*** In valid manifset formate.");
-
-        blockPart+=line+";";
-        }
-        line = br.readLine();
-       }
-        listOfParts.add(blockPart);
+       
     }
     catch (Exception e)
     {
