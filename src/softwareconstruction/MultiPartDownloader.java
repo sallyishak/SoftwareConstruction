@@ -122,7 +122,7 @@ public static boolean testInet(String site) {
     Socket sock = new Socket();
     InetSocketAddress addr = new InetSocketAddress(site,80);
     try {
-        sock.connect(addr,3000);
+        sock.connect(addr,2000);
              JOptionPane.showMessageDialog(null, "Connected, your MultiData will start Shortly", "InfoBox: " + "Message", JOptionPane.INFORMATION_MESSAGE);
         return true;
     } catch (IOException e) {
