@@ -116,7 +116,7 @@ public class MultiPartDownloader extends JFrame {
         add(scrollPane, BorderLayout.CENTER);
         panel.setBackground(Color.lightGray);
    
-        setSize(1000,800);
+        setSize(2000,900);
 	}
 public static boolean testInet(String site) {
     Socket sock = new Socket();
