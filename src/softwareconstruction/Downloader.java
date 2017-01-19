@@ -59,16 +59,15 @@ public class Downloader
         return inptStream;
     }
 // have to check the exception 
-   
-    public InputStream manageDownload(InputStream inputStream1,String[] linkList) throws Exception
-    {
-        
 
-        InputStream inputStream2=null;
+
+ public InputStream manageDownload(InputStream inptStream,String[] linkList) throws Exception
+       
+
+        InputStream inptStream2=null;
         boolean downloadSucccess=false;
-        return null;
-      
-       for(String urlString:linkList)
+
+        for(String urlString:linkList)
         {
             if(MultiPartData.validateURL(urlString)&&MultiPartData.UrlFound(urlString))
             {
@@ -85,64 +84,23 @@ public class Downloader
                         inptStream=Merge.mergeTwoInputStream(inptStream,inptStream2);
 
                     downloadSucccess=true;
-                    break; // **** we need only one link form bock
+                    break; 
                 }
                 catch (Exception e)
                 {
-                   
+                    /**
+                      * Ignore Exception
+                      * and
+                      * try download form alternative url
+                      **/
                 }
             }
         }
 
-
-    }
-// have to check the exception 
-    private InputStream openUrlStreamAndMergeIt(InputStream inptStream,String urlString) throws  Exception
-    {
-        return null;
-        
-    }
-
-
-
-}
-
-private InputStream openUrlStreamAndMergeIt(InputStream inptStream,String urlString) throws  Exception
-    {
-   
-
-          InputStream  inptStream2=new URL(urlString).openStream();
-
-         if(inptStream==null)
-            inptStream=inptStream2;
-         else
-            inptStream=Merge.mergeTwoInputStream(inptStream,inptStream2);
+        if(!downloadSucccess)
+        throw  new Exception(" *** Fail Download Bolck");
 
         return inptStream;
---------------------------------
-public class Downloader
-{
-
-    public Downloader() {
     }
-
-    public PicIn DownloaderUrl(String url) throws Exception
-    {
-        
-
-        PicIn inputPic=null;
-
-        if(url!=null && !url.equals(""))
-            url = url.trim();
-        else
-            throw new IOException(" *** Empty.");
- if (!Multipart.validateURL(url))
-            throw new IOException(" *** Invalid.");
-
-         if (!Multipart.isUrlExist(url))
-            throw new IOException(" ***Not Exist.");
-            
-            if(url.endsWith(Main.MANIFEST_SUFFIX)) 
-        {
 
    
