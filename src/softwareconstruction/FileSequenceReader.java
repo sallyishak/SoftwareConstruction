@@ -65,7 +65,7 @@ public class FileSequenceReader {
 
 
 
-//-------------------------------------------------------------------We have to change this class --------//
+//------------------------------------------------------------We have to change this class --------//
 /**
  * Static class for reading from a file-sequence stream.
 
@@ -82,6 +82,7 @@ public class FileSequenceReader {
 		// sequence files consist of a (4-byte) int giving the size of the sub-file,
 		// followed by the sub-file, followed by another size, followed by the sub-file,
 		// and so on until EOF
+	
 		
 	}
 }
