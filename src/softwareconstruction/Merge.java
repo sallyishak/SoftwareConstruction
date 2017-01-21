@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package softwareconstruction;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.SequenceInputStream;
@@ -33,6 +32,7 @@ private InputStream openUrlStreamAndMergeIt(InputStream inptStream,String urlStr
           InputStream  inptStream2=new URL(urlString).openStream();
 
          if(inptStream==null)
+         
             inptStream=inptStream2;
          else
             inptStream=Merge.mergeTwoInputStream(inptStream,inptStream2);
