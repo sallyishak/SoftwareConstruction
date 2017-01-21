@@ -211,6 +211,7 @@ public static boolean testInet(String site) {
 		else {
 			textView.setText("[unknown file type]");
 			scrollPane.setViewportView(textView);
+		
 		}
 	
 
