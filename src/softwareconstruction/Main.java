@@ -27,7 +27,10 @@ import sequence.FileSequenceReader;
 
 import multipart.Multipart;
 
-
+/**
+ *
+ * @author RemalSaad
+ */
 /**
  * A program for downloading and previewing multi-part files
  * and file sequence streams From the DR .
