@@ -39,7 +39,7 @@ public class MultiPartData
         }
         catch (URISyntaxException e)
         {
-            System.err.println("Error in Validation URL"+e);
+            System.err.println("Error in Validation the URL"+e);
             return false;
         }
 
@@ -57,7 +57,7 @@ public class MultiPartData
         }
         catch (Exception e)
         {
-            System.err.println("Error in locating URL:"+e);
+            System.err.println("Error in locating the URL:"+e);
             return false;
         }
     }
