@@ -21,22 +21,21 @@ public class Downloader
     public InputStream downloadUrl(String url) throws Exception
     {
        
-
         InputStream inptStream=null;
-         if(url!=null && !url.equals(""))
+         if (url!=null && !url.equals(""))
             url = url.trim();
         else
-            throw new IOException("Empty URL.");
+            throw new IOException("Empty URL!");
 
 
         if (!MultiPartData.validateURL(url))
-            throw new IOException("Invalid URL.");
+            throw new IOException("Invalid URL!");
 
          if (!MultiPartData.UrlFound(url))
-            throw new IOException("Manifset Not Exist.");
+            throw new IOException("Manifset Not Exist!");
 
        
-        if(url.endsWith(MultiPartDownloader.MANIFEST_SUFFIX)) 
+        if (url.endsWith(MultiPartDownloader.MANIFEST_SUFFIX)) 
         {
             
             Parser parsingManifest=new Parser();
@@ -91,14 +90,14 @@ public class Downloader
                     /**
                       * Ignore Exception
                       * and
-                      * try download form alternative url
+                      * try to download form alternative url
                       **/
                 }
             }
         }
 
         if(!downloadSucccess)
-        throw  new Exception(" *** Fail Download Bolck");
+        throw  new Exception(" **** Fail To Download Bolck");
 
         return inptStream;
     }
