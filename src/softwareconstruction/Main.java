@@ -133,6 +133,7 @@ public class Main extends JFrame {
 	 * If it is a sequence file (with suffix .seq), downloads and previews
 	 * one file at a time.
 	 */
+	
 	private void startDownload() {
     	finishDownload();
 
