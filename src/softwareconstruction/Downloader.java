@@ -1,72 +1,77 @@
-/**
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package softwareconstruction;
+package multipartdownloader;
 
-import java.util.List;
+//Final Code
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.List;
+import org.apache.log4j.Logger;
 
-/**
- *
- * @author Zeina Doughlas
- */
-
-// downloader Classs 
 
 public class Downloader
 {
-  
+    final static Logger logger = Logger.getLogger(Downloader.class);
+
     public Downloader() {
     }
 
     public InputStream downloadUrl(String url) throws Exception
     {
-       
+        if(logger.isDebugEnabled())
+        logger.info("Start Call function downloadUrl(url)");
+
         InputStream inptStream=null;
-         if (url!=null && !url.equals(""))
+
+        if(url!=null && !url.equals(""))
             url = url.trim();
         else
-            throw new IOException("Empty URL!");
+            throw new IOException(" *** Empty URL.");
 
 
         if (!MultiPartData.validateURL(url))
-            throw new IOException("Invalid URL!");
+            throw new IOException(" *** Invalid URL.");
 
          if (!MultiPartData.UrlFound(url))
-            throw new IOException("Manifset Not Exist!");
+            throw new IOException(" *** Manifset Not Exist.");
 
-       
-        if (url.endsWith(MultiPartDownloader.MANIFEST_SUFFIX)) 
+
+        if(logger.isDebugEnabled())
+        logger.debug("Download.downloadUrl:The URL Valid and Exist.");
+
+
+        if(url.endsWith(MultiPartDownloader.MANIFEST_SUFFIX)) // is Manifest
         {
-            
-            Parser parsingManifest=new Parser();
-            List<String> list = parsingManifest.readManifset(new URL(url));
+            if(logger.isDebugEnabled())
+            logger.debug("Download.downloadUrl:The URL for Manifest.");
 
-            for (int i = 0; i < list.size(); i++)
+            Parser parsingManifest=new Parser();
+            List<String> bockList = parsingManifest.readManifset(new URL(url));
+
+            for (int i = 0; i < bockList.size(); i++)
             {
-                String[] linkList = list.get(i).split(";");
+                String[] linkList = bockList.get(i).split(";");
                 inptStream=manageDownload(inptStream, linkList);
             }
         }
         else
         {
-            
+            if(logger.isDebugEnabled())
+            logger.debug("Download.downloadUrl:The URL for File.");
 
             inptStream=openUrlStreamAndMergeIt(inptStream,url);
         }
 
+        if(logger.isDebugEnabled())
+        logger.info("End Call function downloadUrl(url)");
 
         return inptStream;
     }
-// have to check the exception 
 
-
- public InputStream manageDownload(InputStream inptStream,String[] linkList) throws Exception
-       
+    // **************************************************** manageDownload Function **********
+    public InputStream manageDownload(InputStream inptStream,String[] linkList) throws Exception// download one link of block
+    {
+        if(logger.isDebugEnabled())
+        logger.info("Start Call function manageDownload(...)");
 
         InputStream inptStream2=null;
         boolean downloadSucccess=false;
@@ -88,23 +93,43 @@ public class Downloader
                         inptStream=Merge.mergeTwoInputStream(inptStream,inptStream2);
 
                     downloadSucccess=true;
-                    break; 
+                    break; // **** we need only one link form bock
                 }
                 catch (Exception e)
                 {
                     /**
                       * Ignore Exception
                       * and
-                      * try to download form alternative url
+                      * try download form alternative url
                       **/
                 }
             }
         }
 
         if(!downloadSucccess)
-        throw  new Exception(" **** Fail To Download Bolck");
+        throw  new Exception(" *** Fail Download Bolck");
+
+        if(logger.isDebugEnabled())
+         logger.info("End Call function manageDownload(...)");
 
         return inptStream;
     }
 
-   
+    //---------------------------------------
+
+    private InputStream openUrlStreamAndMergeIt(InputStream inptStream,String urlString) throws  Exception
+    {
+        if(logger.isDebugEnabled())
+            logger.info("Start Call function openUrlStreamAndMergeIt(...)");
+
+          InputStream  inptStream2=new URL(urlString).openStream();
+
+         if(inptStream==null)
+            inptStream=inptStream2;
+         else
+            inptStream=Merge.mergeTwoInputStream(inptStream,inptStream2);
+
+        if(logger.isDebugEnabled())
+            logger.info("End Call function openUrlStreamAndMergeIt(...)");
+
+        return inptStream;
