@@ -132,4 +132,4 @@ public class Downloader
         if(logger.isDebugEnabled())
             logger.info("End Call function openUrlStreamAndMergeIt(...)");
 
-        return inptStream;
+        return inptStream; 
