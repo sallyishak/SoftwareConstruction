@@ -17,11 +17,16 @@ import java.net.URISyntaxException;
 
 public class MultiPartData
 {
+     final static Logger logger = Logger.getLogger(MultiPartData.class);
     
     public static InputStream openStream(String url) throws Exception
     {
+          if(logger.isDebugEnabled())
+        logger.info("Start Call function openStream(url)");
+        
        InputStream inputStream = new Downloader().downloadUrl(url);
-
+   if(logger.isDebugEnabled())
+        logger.info("End Call function openStream(url)");
 
         return inputStream;
 
