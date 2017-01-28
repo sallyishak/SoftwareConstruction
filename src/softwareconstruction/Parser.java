@@ -26,7 +26,7 @@ import java.util.Scanner;
 
 public class Parser
 {
-    
+    final static Logger logger = Logger.getLogger(Parser.class);
 
 	public Parser()
     {
@@ -37,7 +37,8 @@ public class Parser
 
     public  List<String> readManifset(URL url) throws Exception
      {
-        
+                if(logger.isDebugEnabled())
+         logger.info("Start Call function readManifset(url)");
 
          List<String> listOfParts=new ArrayList<String>();
          String str = "";
@@ -63,7 +64,8 @@ public class Parser
     catch (Exception e)
     {
        
-
+  if(logger.isDebugEnabled())
+        logger.error("Error multipart.Parsing.readManifset:" + e);
         throw e;
 
     }
@@ -73,7 +75,8 @@ public class Parser
     }
 
       
-
+    if(logger.isDebugEnabled())
+         logger.info("End Call function readManifset(url)");
 		
 	
 		return listOfParts ;
