@@ -19,6 +19,8 @@ public class Merge
 
     public static InputStream mergeTwoInputStream(InputStream inputStream1, InputStream inputStream2) throws IOException
     {
+     if(logger.isDebugEnabled())
+        logger.info("Call function mergeTwoInputStream(...)");
         
         return   new  SequenceInputStream(inputStream1,inputStream2);
     }
